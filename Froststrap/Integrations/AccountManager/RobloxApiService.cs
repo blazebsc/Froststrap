@@ -73,7 +73,7 @@ namespace Froststrap.Integrations.AccountManager
                 if (string.IsNullOrEmpty(cookie))
                     return false;
 
-                using var handler = new HttpClientHandler
+                var handler = new HttpClientHandler
                 {
                     CookieContainer = new CookieContainer(),
                     CheckCertificateRevocationList = true

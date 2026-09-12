@@ -1,10 +1,19 @@
-﻿using System.Collections.Concurrent;
+﻿// SPDX-FileCopyrightText: 2026 Froststrap
+// Copyright (C) Froststrap Team
+//
+// SPDX-License-Identifier: MPL-2.0
+
+using System.Collections.Concurrent;
 using System.Net.Http.Headers;
 
 namespace Froststrap.Integrations
 {
     internal class RobloxServerFetcher : IDisposable
     {
+<<<<<<< HEAD
+=======
+        private static readonly AccountManager.AccountManager _accountManager = null!;
+>>>>>>> b1f49a55 (fix: fix warnings regarding account manager)
         private readonly HttpClient _client;
         private Dictionary<int, string>? _datacenterIdToRegion;
         private List<string>? _regionList;

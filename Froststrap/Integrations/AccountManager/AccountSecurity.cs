@@ -3,8 +3,10 @@
 //
 // SPDX-License-Identifier: MPL-2.0
 
+using System.Text;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Globalization;
 using ktsu.CredentialCache;
 using ktsu.Semantics.Strings;
 
@@ -23,7 +25,10 @@ internal static class AccountSecurity
         {
             PersonaGUID persona = CreatePersona(accountId);
 
-            if (ktsu.CredentialCache.CredentialCache.Instance.TryGet(persona, out Credential? credential)
+            if (ktsu.CredentialCache.CredentialCache.Instance.TryGet(
+                    persona,
+                    out Credential? credential
+                )
                 && credential is CredentialWithToken token)
             {
                 return token.Token.ToString(CultureInfo.InvariantCulture);

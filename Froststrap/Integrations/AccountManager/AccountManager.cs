@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: MPL-2.0
 
 using Froststrap.UI.Elements.Dialogs;
+using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -78,6 +79,7 @@ namespace Froststrap.Integrations.AccountManager
             try
             {
                 var root = JObject.Parse(json);
+                var accounts = root[nameof(Accounts)] as JArray;
 
                 if (root[nameof(AccountManagerData.Accounts)] is not JArray accounts)
                     return json;
@@ -105,7 +107,8 @@ namespace Froststrap.Integrations.AccountManager
 
                     if (!AccountSecurity.SetCredential(
                             userId.ToString(CultureInfo.InvariantCulture),
-                            unprotectedToken))
+                            unprotectedToken
+                        ))
                     {
                         throw new InvalidOperationException(
                             $"Failed to store credential for account {userId}."
@@ -227,10 +230,9 @@ namespace Froststrap.Integrations.AccountManager
                 return false;
             }
         }
-#pragma warning disable CA1822
-        public string? GetRoblosecurityForUser(long userId) =>
+
+        public static string? GetRoblosecurityForUser(long userId) =>
             AccountSecurity.GetCredential(userId.ToString(CultureInfo.InvariantCulture));
-#pragma warning restore CA1822
 
         public static Task<AccountManagerAccount?> AddAccountByQuickSignInAsync(
             QuickSignCodeDialog dialog,

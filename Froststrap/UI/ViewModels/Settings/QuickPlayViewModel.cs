@@ -940,7 +940,7 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
         var accountManager = AccountManager.Shared;
         if (accountManager?.ActiveAccount == null) return [];
 
-        string? cookie = accountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
+        string? cookie = AccountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
         if (string.IsNullOrEmpty(cookie)) return [];
 
         var url = UrlBuilder.BuildApiUrl("apis", "search-landing-page-api/v1?sessionId=Meddsam");
@@ -1206,7 +1206,7 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
         var accountManager = AccountManager.Shared;
         if (accountManager?.ActiveAccount == null) return [];
 
-        string? cookie = accountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
+        string? cookie = AccountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
         if (string.IsNullOrEmpty(cookie)) return [];
 
         var url = UrlBuilder.BuildApiUrl("games", $"v2/users/{userId}/favorite/games?accessFilter=0&limit=100&sortOrder=Desc");
@@ -1281,7 +1281,7 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
         var accountManager = AccountManager.Shared;
         if (accountManager?.ActiveAccount == null) return [];
 
-        string? cookie = accountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
+        string? cookie = AccountManager.GetRoblosecurityForUser(accountManager.ActiveAccount.UserId);
         if (string.IsNullOrEmpty(cookie)) return [];
 
         var url = "https://apis.roblox.com/discovery-api/omni-recommendation";
@@ -1443,7 +1443,7 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
 
         try
         {
-            string? cookie = accountManager.GetRoblosecurityForUser(activeAccount.UserId);
+            string? cookie = AccountManager.GetRoblosecurityForUser(activeAccount.UserId);
             if (string.IsNullOrEmpty(cookie))
             {
                 _ = Frontend.ShowMessageBox(Strings.Menu_QuickPlay_UnableToAuthenticate, MessageBoxImage.Warning);
@@ -1645,6 +1645,7 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
 
         Process.Start(new ProcessStartInfo(deeplink) { UseShellExecute = true });
     }
+<<<<<<< HEAD
 
     private void SwapSearchResults(ObservableCollection<OmniSearchContent> next)
     {
@@ -1700,3 +1701,6 @@ internal class QuickPlayViewModel : NotifyPropertyChangedViewModel, IDisposable
         _disposed = true;
     }
 }
+=======
+}
+>>>>>>> b1f49a55 (fix: fix warnings regarding account manager)

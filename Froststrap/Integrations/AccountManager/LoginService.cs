@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MPL-2.0
 
 using Avalonia.Threading;
-using Froststrap.UI.Elements.Dialogs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PuppeteerSharp;
@@ -12,6 +11,9 @@ using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using Froststrap.UI.Elements.Dialogs;
+using Froststrap.UI.Elements.Settings;
+using FluentAvalonia.UI.Controls;
 
 namespace Froststrap.Integrations.AccountManager
 {
@@ -186,6 +188,12 @@ namespace Froststrap.Integrations.AccountManager
                     if (executablePath == null)
                     {
                         App.Logger.Info("No browser found, downloading Chromium...");
+                        MainWindow.ShowGlobalNotification(
+                            "Supported browser not found",
+                            "Downloading Chromium...",
+                            FAInfoBarSeverity.Informational,
+                            3000
+                        );
                         var browserInfo = await fetcher.DownloadAsync();
                         executablePath = browserInfo.GetExecutablePath();
                     }

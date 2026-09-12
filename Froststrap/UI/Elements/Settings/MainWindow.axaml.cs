@@ -356,7 +356,8 @@ namespace Froststrap.UI.Elements.Settings
                 Strings.Menu_SettingsSaved_Title,
                 Strings.Menu_SettingsSaved_Message,
                 FAInfoBarSeverity.Success,
-                3000);
+                3000
+            );
         }
 
         private async void ShowAlreadyRunningNotification()
